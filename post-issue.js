@@ -28,7 +28,7 @@ function createIssue(url) {
             "title": title,
             "body": url,
             "assignees": [ "kun-g" ],
-            "milestone": 1,
+            // "milestone": 1,
             //"labels": [ "bug" ]
         }, function (err, data) {
             if (err) {
