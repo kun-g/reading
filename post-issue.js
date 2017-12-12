@@ -1,9 +1,7 @@
 var GitHub = require('github-api');
 
 // basic auth
-var gh = new GitHub({
-    token: '765134f4565d8405a8ad1c53595a8573a3488fb6'
-});
+var gh = new GitHub({ token: 'fd380165f46189c1b6a5e7bdb54e10cc61f0552f' });
 
 var me = gh.getUser(); // no user specified defaults to the user for whom credentials were provided
 //me.listNotifications(function(err, notifications) {
@@ -14,7 +12,9 @@ var me = gh.getUser(); // no user specified defaults to the user for whom creden
 //    console.log(repos);
 //   // look at all the starred repos!
 //});
-
+//me.getProfile(function (err, data) {
+//    console.log(err,data);
+//})
 var issue = gh.getIssues("kun-g", "reading");
 //issue.listIssues({}, function (err, data) { console.log(data); });
 
@@ -31,7 +31,11 @@ function createIssue(url) {
             "milestone": 1,
             //"labels": [ "bug" ]
         }, function (err, data) {
-            console.log('Created', title);
+            if (err) {
+                console.log(err) 
+            } else {
+                console.log('Created', title);
+            }
         });
     });
 
@@ -57,5 +61,7 @@ function getTitle(url, cb) {
         });
     });
 }
-
-createIssue('http://insights.thoughtworks.cn/agile-learning-method-base-on-github/');
+let [, , url] = process.argv;
+if (url) {
+    createIssue(url);
+}
