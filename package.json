@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "github-api": "^3.0.0"
+  }
+}
