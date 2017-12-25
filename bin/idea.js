@@ -5,7 +5,7 @@ var path = './cards/ideas/'
 
 if (title) {
     var files = readdirSync(path)
-    var id = files.map(e => Number(e.slice(0, -3))).sort().pop() || 0;
+    var id = files.map(e => Number(e.slice(0, e.indexOf('.')))).sort().pop() || 0;
     id += 1
     
     var template = `- id: ${id}
@@ -17,7 +17,7 @@ if (title) {
 - history:
   - ${(new Date).toLocaleDateString()} create`
     
-    writeFileSync([path, id, '.md'].join(''), template)
+    writeFileSync([path, id, '.', title, '.md'].join(''), template)
     console.log("Done：", id)
 } else {
     ;
