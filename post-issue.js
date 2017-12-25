@@ -1,6 +1,8 @@
 var GitHub = require('github-api');
+var { readFileSync } = require('fs')
 
-// basic auth
+let token = readFileSync('./Issue.token').toString()
+
 var gh = new GitHub({ token: 'fd380165f46189c1b6a5e7bdb54e10cc61f0552f' });
 
 var me = gh.getUser(); // no user specified defaults to the user for whom credentials were provided
@@ -18,7 +20,7 @@ var me = gh.getUser(); // no user specified defaults to the user for whom creden
 var issue = gh.getIssues("kun-g", "reading");
 //issue.listIssues({}, function (err, data) { console.log(data); });
 
-
+/*
 function createIssue(url) {
     getTitle(url, function (err, title) {
         if (err) {
@@ -65,3 +67,4 @@ let [, , url] = process.argv;
 if (url) {
     createIssue(url);
 }
+*/
