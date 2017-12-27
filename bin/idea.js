@@ -2,10 +2,13 @@ var [, , title] = process.argv
 var { readdirSync, writeFileSync } = require('fs')
 
 var path = './cards/ideas/'
+var files = readdirSync(path).map(function (e) {
+    let [id, name] = e.split('.')
+    return { id: Number(id), name }
+})
 
 if (title) {
-    var files = readdirSync(path)
-    var id = files.map(e => Number(e.slice(0, e.indexOf('.')))).sort().pop() || 0;
+    var id = files.map(e => e.id).sort().pop() || 0;
     id += 1
     
     var template = `- id: ${id}
@@ -20,5 +23,7 @@ if (title) {
     writeFileSync([path, id, '.', title, '.md'].join(''), template)
     console.log("Done：", id)
 } else {
-    ;
+    files.forEach(function (e) {
+        console.log(e.id, e.name)
+    })
 }
