@@ -23,7 +23,7 @@ if (title) {
     writeFileSync([path, id, '.', title, '.md'].join(''), template)
     console.log("Done：", id)
 } else {
-    files.forEach(function (e) {
-        console.log(e.id, e.name)
+    files.forEach(function ({id, name}) {
+        console.log(`${id}: ${name}`)
     })
 }
